@@ -99,40 +99,45 @@
 
 <div class="container">
     <h2>🏆 Bolão da Copa</h2>
-    
-    <form id="formBolao">
-        <div class="campo">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" required placeholder="Digite seu nome completo">
-        </div>
 
-        <div class="campo">
-            <label>Placar:</label>
-            <div class="placar-container">
-                <span>🇧🇷 Brasil</span>
-                <input type="text" id="placarBrasil" class="placar-input" maxlength="2" required placeholder="0">
-                <span>X</span>
-                <input type="text" id="placarEscocia" class="placar-input" maxlength="2" required placeholder="0">
-                <span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia</span>
-            </div>
-        </div>
-
-        <div class="campo">
-            <label>Já fez o pix? R$5,00</label>
-            <div class="radio-group">
-                <label style="font-weight: normal;"><input type="radio" name="pix" value="Sim" required> Sim</label>
-                <label style="font-weight: normal;"><input type="radio" name="pix" value="Não"> Não</label>
-            </div>
-        </div>
 
         <div class="pix-info">
-            <strong>Chave Pix:</strong> 48984642644 <br>
-            <strong>Nome:</strong> Marco Brasil <br>
-            <strong>Banco:</strong> Nubank <br>
-            <strong>ENVIAR APOSTA ATÉ AS 14:00 de Quarta-Feira</strong> 
+            <strong>Sandokam Bussola -- </strong> <strong>Brasil 3 x 0 Escócia</strong> <br>
+            <strong>Marco Brasil -- </strong> Brasil 2  x 1 Escócia <br>
+            <strong>VILSON DEOCLESIO DA SILVA -- </strong> Brasil 4 x 0 Escócia <br>
+            <strong>Rheno Marcel de Oliveira -- </strong> Brasil 1 x 0 Escócia <br>
+            <strong>Rodrigo Spózito -- </strong> Brasil 2 x 0 Escócia<br>
+            <strong>Ana Carolina Galvão Braccini Ávila -- </strong> Brasil 2 x 1 Escócia<br>
+            <strong>Jean -- </strong> Brasil 3 x 1 Escócia <br>
+            <strong>Caio Amato
+ </strong> Brasil 2 x 0 Escócia
+ <br>
+            <strong>Vinicius de Paula Martins Pereira --
+ </strong> Brasil 2 x 0 Escócia
+ <br>
+            <strong>Debora Althoff -- 
+ </strong> Brasil 2 x 0 Escócia
+ <br>
+            <strong>Paulo Dalbem --
+ </strong> Brasil 3 x 1 Escócia
+ <br>
+            <strong>Paula Sales Cabral --
+ </strong> Brasil 2 x 0 Escócia
+ <br>
+            <strong>Magno Moises Martins --
+ </strong> Brasil 4 x 1 Escócia
+ <br>
+            <strong>Roselaine Ramires Lauter  --
+ </strong> Brasil 1 x 0 Escócia
+ <br>
+            <strong>Kleber klebildo --
+ </strong> Brasil 2 x 1 Escócia <br>
+          
+            
+
         </div>
 
-        <button type="submit" id="btnEnviar">Enviar Aposta</button>
+        <button type="submit" id="btnEnviar">Até a próxima aposta</button>
     </form>
 </div>
 
@@ -169,13 +174,13 @@
         .then(() => {
             alert('Aposta enviada com sucesso! Boa sorte! 🇧🇷');
             document.getElementById('formBolao').reset(); // Limpa a tela
-            btn.innerText = "Enviar Aposta";
+            btn.innerText = "Até o próximo jogo";
             btn.disabled = false;
         })
         .catch(error => {
-            alert('Erro ao enviar aposta. Tente novamente.');
+            alert('NÃO TEM O QUE ENVIAR, ATÉ A PRÓXIMA.');
             console.error(error);
-            btn.innerText = "Enviar Aposta";
+            btn.innerText = "Até o próximo jogo";
             btn.disabled = false;
         });
     });
