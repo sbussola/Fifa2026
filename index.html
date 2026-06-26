@@ -99,46 +99,83 @@
 
 <div class="container">
     <h2>🏆 Bolão da Copa</h2>
-
-
-        <div class="pix-info">
-            <strong>Sandokam Bussola -- </strong> <strong>Brasil 3 x 0 Escócia</strong> <br>
-            <strong>Marco Brasil -- </strong> Brasil 2  x 1 Escócia <br>
-            <strong>VILSON DEOCLESIO DA SILVA -- </strong> Brasil 4 x 0 Escócia <br>
-            <strong>Rheno Marcel de Oliveira -- </strong> Brasil 1 x 0 Escócia <br>
-            <strong>Rodrigo Spózito -- </strong> Brasil 2 x 0 Escócia<br>
-            <strong>Ana Carolina Galvão Braccini Ávila -- </strong> Brasil 2 x 1 Escócia<br>
-            <strong>Jean -- </strong> Brasil 3 x 1 Escócia <br>
-            <strong>Caio Amato
- </strong> Brasil 2 x 0 Escócia
- <br>
-            <strong>Vinicius de Paula Martins Pereira --
- </strong> Brasil 2 x 0 Escócia
- <br>
-            <strong>Debora Althoff -- 
- </strong> Brasil 2 x 0 Escócia
- <br>
-            <strong>Paulo Dalbem --
- </strong> Brasil 3 x 1 Escócia
- <br>
-            <strong>Paula Sales Cabral --
- </strong> Brasil 2 x 0 Escócia
- <br>
-            <strong>Magno Moises Martins --
- </strong> Brasil 4 x 1 Escócia
- <br>
-            <strong>Roselaine Ramires Lauter  --
- </strong> Brasil 1 x 0 Escócia
- <br>
-            <strong>Kleber klebildo --
- </strong> Brasil 2 x 1 Escócia <br>
-          
-            
-
+    
+    <form id="formBolao">
+        <div class="campo">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required placeholder="Digite seu nome completo">
         </div>
 
-        <button type="submit" id="btnEnviar">Até a próxima aposta</button>
+        <div class="campo">
+            <label>Placar:</label>
+            <div class="placar-container">
+                <span>🇧🇷 Brasil</span>
+                <input type="text" id="placarBrasil" class="placar-input" maxlength="2" required placeholder="0">
+                <span>X</span>
+                <input type="text" id="placarJapao" class="placar-input" maxlength="2" required placeholder="0">
+                <span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Japão </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Já fez o pix? R$ 10,00 </label>
+            <div class="radio-group">
+                <label style="font-weight: normal;"><input type="radio" name="pix" value="Sim" required> Sim</label>
+                <label style="font-weight: normal;"><input type="radio" name="pix" value="Não"> Não</label>
+            </div>
+        </div>
+
+        <div class="pix-info">
+            <strong>Chave Pix:</strong> 48984642644 <br>
+            <strong>Nome:</strong> Marco Brasil <br>
+            <strong>Banco:</strong> Nubank <br>
+            <strong>ENVIAR APOSTA ATÉ AS 12:00 - Segunda-Feira</strong> 
+        </div>
+
+        <button type="submit" id="btnEnviar">Enviar Aposta</button>
     </form>
+    <hr>
+
+<button type="button" id="btnVerApostas">
+    👀 Ver Apostas
+</button>
+
+<div id="consulta" style="display:none; margin-top:20px;">
+
+    <p><strong>Você já fez sua aposta?</strong></p>
+
+    <label>
+        <input type="radio" name="jaApostou" value="sim">
+        Sim
+    </label>
+
+    <label style="margin-left:15px;">
+        <input type="radio" name="jaApostou" value="nao">
+        Não
+    </label>
+
+    <div id="naoPode" style="display:none; margin-top:15px; color:red;">
+        Apenas quem já realizou uma aposta pode visualizar as apostas.
+    </div>
+
+    <div id="verificacao" style="display:none; margin-top:15px;">
+
+        <input
+            type="text"
+            id="nomeConsulta"
+            placeholder="Digite o nome usado na aposta">
+
+        <br><br>
+
+        <button type="button" id="confirmarNome">
+            Confirmar
+        </button>
+
+    </div>
+
+    <div id="resultado" style="margin-top:20px;"></div>
+
+</div>
 </div>
 
 <script>
@@ -152,8 +189,8 @@
         btn.innerText = "Enviando...";
         btn.disabled = true;
 
-        // Junta os placares ex: "Brasil 2 x 1 Escócia"
-        const placarFinal = `Brasil ${document.getElementById('placarBrasil').value} x ${document.getElementById('placarEscocia').value} Escócia`;
+        // Junta os placares ex: "Brasil 2 x 1 Japão"
+        const placarFinal = `Brasil ${document.getElementById('placarBrasil').value} x ${document.getElementById('placarJapao').value} Japão`;
         
         // Monta os dados para enviar
         const dadosFormulario = {
@@ -174,16 +211,86 @@
         .then(() => {
             alert('Aposta enviada com sucesso! Boa sorte! 🇧🇷');
             document.getElementById('formBolao').reset(); // Limpa a tela
-            btn.innerText = "Até o próximo jogo";
+            btn.innerText = "Enviar Aposta";
             btn.disabled = false;
         })
         .catch(error => {
-            alert('NÃO TEM O QUE ENVIAR, ATÉ A PRÓXIMA.');
+            alert('Erro ao enviar aposta. Tente novamente.');
             console.error(error);
-            btn.innerText = "Até o próximo jogo";
+            btn.innerText = "Enviar Aposta";
             btn.disabled = false;
         });
     });
+
+    document.getElementById("btnVerApostas").addEventListener("click", function () {
+
+    document.getElementById("consulta").style.display = "block";
+
+});
+
+document.getElementsByName("jaApostou").forEach(radio => {
+
+    radio.addEventListener("change", function(){
+
+        if(this.value=="sim"){
+
+            document.getElementById("verificacao").style.display="block";
+            document.getElementById("naoPode").style.display="none";
+
+        }else{
+
+            document.getElementById("verificacao").style.display="none";
+            document.getElementById("naoPode").style.display="block";
+
+        }
+
+    });
+
+});
+
+document.getElementById("confirmarNome").addEventListener("click", function(){
+
+    const nome = document.getElementById("nomeConsulta").value;
+
+    fetch(URL_SCRIPT + "?nome=" + encodeURIComponent(nome))
+
+    .then(r=>r.json())
+
+    .then(res=>{
+
+        if(!res.autorizado){
+
+            alert("Nome não encontrado.");
+
+            return;
+
+        }
+
+        let html="<h3>Apostas</h3>";
+
+        html+="<table border='1' cellpadding='5' style='width:100%; border-collapse:collapse;'>";
+
+        html+="<tr><th>Nome</th><th>Placar</th></tr>";
+
+        res.apostas.forEach(a=>{
+
+            html+="<tr>";
+
+            html+="<td>"+a.nome+"</td>";
+
+            html+="<td>"+a.placar+"</td>";
+
+            html+="</tr>";
+
+        });
+
+        html+="</table>";
+
+        document.getElementById("resultado").innerHTML=html;
+
+    });
+
+});
 </script>
 
 </body>
