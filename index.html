@@ -112,8 +112,8 @@
                 <span>🇧🇷 Brasil</span>
                 <input type="text" id="placarBrasil" class="placar-input" maxlength="2" required placeholder="0">
                 <span>X</span>
-                <input type="text" id="placarJapao" class="placar-input" maxlength="2" required placeholder="0">
-                <span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Japão </span>
+                <input type="text" id="placarNoruega" class="placar-input" maxlength="2" required placeholder="0">
+                <span>🇳🇴  Noruega</span>
             </div>
         </div>
 
@@ -129,7 +129,7 @@
             <strong>Chave Pix:</strong> 48984642644 <br>
             <strong>Nome:</strong> Marco Brasil <br>
             <strong>Banco:</strong> Nubank <br>
-            <strong>ENVIAR APOSTA ATÉ AS 12:00 - Segunda-Feira</strong> 
+            <strong>ENVIAR APOSTA ATÉ AS 18:00 - Sexta</strong> 
         </div>
 
         <button type="submit" id="btnEnviar">Enviar Aposta</button>
@@ -190,7 +190,7 @@
         btn.disabled = true;
 
         // Junta os placares ex: "Brasil 2 x 1 Japão"
-        const placarFinal = `Brasil ${document.getElementById('placarBrasil').value} x ${document.getElementById('placarJapao').value} Japão`;
+        const placarFinal = `Brasil ${document.getElementById('placarBrasil').value} x ${document.getElementById('placarNoruega').value} Noreuga`;
         
         // Monta os dados para enviar
         const dadosFormulario = {
